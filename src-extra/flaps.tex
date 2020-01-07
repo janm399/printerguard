@@ -1,0 +1,39 @@
+\documentclass{letter}
+\usepackage{geometry}
+\usepackage{tikz}
+\usepackage{fontspec}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyfoot{}
+
+\geometry{ 
+ a4paper,
+ left=30mm,
+ top=10mm,
+ }
+
+\definecolor{B}{rgb}{0,0,0}
+\definecolor{F}{rgb}{1,1,1}
+
+\newcommand{\hsep}[3]{%
+  \fontsize{210pt}{0}
+  \begin{tikzpicture}
+    \draw [fill=#2] (0,0) rectangle (4.6cm, 5.6cm);
+    \draw [color=lightgray] (0,2.8cm) -- (4.6cm, 2.8cm);
+    \node [color=#3,anchor=south east, overlay] at (6.3,-2.3) {#1};
+  \end{tikzpicture}
+}
+
+\newcommand{\flippage}[2]{%
+\hsep{0}{#1}{#2}\hsep{1}{#1}{#2}\hsep{2}{#1}{#2}\par
+\hsep{3}{#1}{#2}\hsep{4}{#1}{#2}\hsep{5}{#1}{#2}\par
+\hsep{6}{#1}{#2}\hsep{7}{#1}{#2}\hsep{8}{#1}{#2}\par
+\hsep{9}{#1}{#2}
+}
+
+\begin{document}
+\setmainfont{Bebas Neue}
+\flippage{B}{F}
+\newpage
+\flippage{F}{B}
+\end{document}
