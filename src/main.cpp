@@ -69,8 +69,7 @@ void displayTask(void *) {
       display.drawUTF8(line2x * 50, 35,
                        (String("湿度 ") + ps.humidity).c_str());
     if (ps.smokeDetected > 0) {
-      display.drawUTF8(0, 50,
-                       (String("烟雾被探测了 ") + ps.smokeDetected).c_str());
+      display.drawUTF8(0, 50, (String("火灾报警 ") + ps.smokeDetected).c_str());
     }
     display.nextPage();
   }
@@ -102,7 +101,7 @@ void sensorsTask(void *) {
       state.humidity = humidity;
       state.smokeDetected = smokeDetected;
     });
-    vTaskDelay(pdMS_TO_TICKS(50000));
+    vTaskDelay(pdMS_TO_TICKS(20000));
   }
 }
 
